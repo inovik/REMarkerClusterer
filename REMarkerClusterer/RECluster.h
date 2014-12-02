@@ -28,6 +28,7 @@
 #import "RELatLngBounds.h"
 
 @class REMarkerClusterer;
+@class BDAnnotationViewWithLabel;
 @protocol REMarker;
 
 @interface RECluster : NSObject <MKAnnotation>
@@ -41,6 +42,7 @@
 @property (copy, readwrite, nonatomic) NSString *subtitle;
 @property (strong, readwrite, nonatomic) NSMutableArray *markers;
 @property (strong, readonly, nonatomic) NSString *coordinateTag;
+@property (strong, nonatomic) BDAnnotationViewWithLabel *annotationViewForCluster;
 
 - (id)initWithClusterer:(REMarkerClusterer *)clusterer;
 - (BOOL)isMarkerAlreadyAdded:(id<REMarker>)marker;

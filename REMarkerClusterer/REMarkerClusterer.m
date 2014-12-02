@@ -203,21 +203,42 @@
     
     if (clusterToAddTo && [clusterToAddTo isMarkerInClusterBounds:marker]) {
         [clusterToAddTo addMarker:marker];
+//        [self.mapView.delegate mapView:self.mapView viewForAnnotation:clusterToAddTo];
     } else {
         RECluster *cluster = [[RECluster alloc] initWithClusterer:self];
         [cluster addMarker:marker];
         [_clusters addObject:cluster];
+//        [self.mapView.delegate mapView:self.mapView viewForAnnotation:cluster];
     }
 }
 
 - (void)createClusters
 {
+    NSArray *tempClusters = [NSArray arrayWithArray:_clusters];
     [_clusters removeAllObjects];
     for (id<REMarker>marker in _markers) {
         if (marker.coordinate.latitude == 0 && marker.coordinate.longitude == 0) 
             continue;
         //if ([self markerInBounds:marker])
              [self addToClosestCluster:marker];
+    }
+    for (RECluster *cluster in _clusters) {
+        for (RECluster *tempCluster in tempClusters) {
+            if (cluster.markers.count == tempCluster.markers.count) {
+                BOOL isNeedGetView = YES;
+                for (REMarker *marker in cluster.markers) {
+                    if (![tempCluster.markers containsObject:marker]) {
+                        isNeedGetView = NO;
+                        break;
+                    }
+                }
+                if (isNeedGetView) {
+                    cluster.annotationViewForCluster = tempCluster.annotationViewForCluster;
+                } else {
+                    cluster.annotationViewForCluster = (BDAnnotationViewWithLabel*)[self.mapView.delegate mapView:self.mapView viewForAnnotation:cluster];
+                }
+            }
+        }
     }
 }
 

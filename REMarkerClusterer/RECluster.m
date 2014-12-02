@@ -42,6 +42,7 @@
         self.markers = [[NSMutableArray alloc] init];
         self.hasCenter = NO;
         self.bounds = [[RELatLngBounds alloc] initWithMapView:self.markerClusterer.mapView];
+        self.annotationViewForCluster = nil;
     }
     return self;
 }
