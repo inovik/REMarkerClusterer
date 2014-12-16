@@ -234,8 +234,6 @@
                 }
                 if (isNeedGetView) {
                     cluster.annotationViewForCluster = tempCluster.annotationViewForCluster;
-                } else {
-                    cluster.annotationViewForCluster = (BDAnnotationViewWithLabel*)[self.mapView.delegate mapView:self.mapView viewForAnnotation:cluster];
                 }
             }
         }
