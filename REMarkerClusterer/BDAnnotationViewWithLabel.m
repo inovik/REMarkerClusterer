@@ -22,7 +22,7 @@
     self.label.backgroundColor = [UIColor blackColor];
     self.label.textAlignment = NSTextAlignmentCenter;
     [self.label sizeToFit];
-    self.label.frame = CGRectMake(0, 0, 40, 40);
+    self.label.frame = CGRectMake(0, 0, 45, 45);
     CALayer *btnLayer = [self.label layer];
     [btnLayer setMasksToBounds:YES];
     [btnLayer setCornerRadius:20.0f];
