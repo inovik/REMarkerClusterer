@@ -25,7 +25,7 @@
     self.label.frame = CGRectMake(0, 0, 45, 45);
     CALayer *btnLayer = [self.label layer];
     [btnLayer setMasksToBounds:YES];
-    [btnLayer setCornerRadius:20.0f];
+    [btnLayer setCornerRadius:22.5f];
     [btnLayer setBorderWidth:.0f];
     [self addSubview:self.label];
 }
